@@ -1,0 +1,118 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwovl42q53ugy"]
+
+[ext_resource type="Script" path="res://DeckHandler.gd" id="1_7o5a0"]
+[ext_resource type="PackedScene" uid="uid://iqgbtholvy2l" path="res://card.tscn" id="2_3ijc4"]
+
+[node name="Game" type="Node2D"]
+
+[node name="DeckHandler" type="Node2D" parent="."]
+script = ExtResource("1_7o5a0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Player1Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_top = 0.5
+anchor_right = 0.3
+anchor_bottom = 0.92
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TestP1" type="RichTextLabel" parent="CanvasLayer/Player1Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][b]PLAYER 1[/b]
+
+[center]Deck: 0
+Discard: 0"
+
+[node name="Player2Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.7
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.92
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TestP2" type="RichTextLabel" parent="CanvasLayer/Player2Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][b]PLAYER 2[/b]
+
+[center]Deck: 0
+Discard: 0"
+
+[node name="PlayArea" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.665
+anchor_bottom = 0.6
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayRoundButton" type="Button" parent="CanvasLayer/PlayArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -15.5
+offset_right = 38.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play War
+"
+
+[node name="Player1Card" parent="CanvasLayer/PlayArea" instance=ExtResource("2_3ijc4")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "[center]Player1 card"
+
+[node name="Player2Card" parent="CanvasLayer/PlayArea" instance=ExtResource("2_3ijc4")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -100.0
+offset_bottom = 100.0
+grow_horizontal = 0
+grow_vertical = 1
+text = "[center]Player2 card"
+
+[connection signal="pressed" from="CanvasLayer/PlayArea/PlayRoundButton" to="DeckHandler" method="play_round"]
